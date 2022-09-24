@@ -19,11 +19,13 @@ terraform {
     }
   }
 }
-
+- name: Setup Terraform
+  uses: hashicorp/setup-terraform@v1
+  with:
+    # terraform_version: 0.13.0
+    cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
 provider "aws" {
-  export AWS_ACCESS_KEY_ID = "AWS_ACCESS_KEY_ID"
-  export AWS_SECRET_ACCESS_KEY = "AWS_SECRET_ACCESS_KEY"
-  region = "us-west-2"
+   region = "us-west-2"
 }
 
 resource "random_pet" "sg" {}
